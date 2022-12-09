@@ -16,21 +16,13 @@ import java.util.Date;
 @ControllerAdvice // Captura as Exceções
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<ExceptionResponse> handleAllExceptions(Exception ex, WebRequest request) {
-        var exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false), HttpStatus.BAD_REQUEST.toString());
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
+   
+  
     @ExceptionHandler(InvalidCharacterException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions(Exception ex, WebRequest request) {
-        var exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false), HttpStatus.BAD_REQUEST.toString());
+        var exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false), HttpStatus.BAD_REQUEST);
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
-      @ExceptionHandler(NumberFormatException.class)
-      public final ResponseEntity<ExceptionResponse> handleBadRequestExceptions2(Exception ex, WebRequest request) {
-          var exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false), HttpStatus.BAD_REQUEST.toString());
-    
-     return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
-    }
+     
+   
 }

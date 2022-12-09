@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.neogedom.exceptionhandling.exception.InvalidCharacterException;
 import com.neogedom.exceptionhandling.model.Soma;
 
 @RestController
@@ -21,7 +21,7 @@ public class SomaController {
             
             return soma.getResultado();
         } catch(NumberFormatException e) {
-             throw new NumberFormatException("Não é permitido letra na url!");
+             throw new InvalidCharacterException("Não é permitido letra na url!");
              
          }
     }
